@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><title>Ecosystem Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; padding: 40px; display: flex; flex-direction: column; align-items: center; }
+        .dashboard { display: flex; gap: 30px; width: 100%; max-width: 1000px; margin-top: 20px; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; flex: 1; }
+    </style>
+</head>
+<body>
+    <h1>JSON Schema Ecosystem Observability</h1>
+    <p>Last Updated: 12/3/2026, 4:35:47 pm</p>
+    <div class="dashboard">
+        <div class="card"><canvas id="npmChart"></canvas></div>
+        <div class="card"><canvas id="githubChart"></canvas></div>
+    </div>
+    <script>
+        new Chart(document.getElementById('npmChart'), {
+            type: 'bar',
+            data: {
+                labels: ['AJV', 'jsonschema', 'Yup'],
+                datasets: [{ label: 'Downloads', data: [220631931, 4749241, 8545645], backgroundColor: ['#cb3837', '#f39c12', '#3498db'] }]
+            },
+            options: { plugins: { title: { display: true, text: 'Validator Market Share', color: '#fff' }, legend: {display: false} } }
+        });
+        new Chart(document.getElementById('githubChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Repos w/ Topic', 'Spec Stars', 'Spec Issues'],
+                datasets: [{ label: 'Stats', data: [2414, 4893, 68], backgroundColor: ['#2ea043', '#e3b341', '#f85149'] }]
+            },
+            options: { scales: { y: { type: 'logarithmic' } }, plugins: { title: { display: true, text: 'GitHub Health (Log Scale)', color: '#fff' }, legend: {display: false} } }
+        });
+    </script>
+</body>
+</html>

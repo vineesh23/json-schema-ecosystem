@@ -1,21 +1,16 @@
-export interface MetricData {
-    npm_weekly_downloads: {
-        ajv: number;
-        jsonschema: number;
-        yup: number;
-    };
-    github_ecosystem: {
-        repos_with_topic: number;
-        core_spec_stars: number;
-        core_spec_open_issues: number;
-    };
+export interface MetricDetail {
+    name: string;
+    value: number;
+    source: 'npm' | 'github';
+    category: string;
+    description: string;
 }
 
 export class EcosystemMetric {
     public timestamp: string;
-    public metrics: MetricData;
+    public metrics: MetricDetail[];
 
-    constructor(metrics: MetricData) {
+    constructor(metrics: MetricDetail[]) {
         this.timestamp = new Date().toISOString();
         this.metrics = metrics;
     }

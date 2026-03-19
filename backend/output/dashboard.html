@@ -5,33 +5,76 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body { font-family: sans-serif; background: #0d1117; color: #c9d1d9; padding: 40px; display: flex; flex-direction: column; align-items: center; }
-        .dashboard { display: flex; gap: 30px; width: 100%; max-width: 1000px; margin-top: 20px; }
-        .card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; flex: 1; }
+        .dashboard { display: flex; gap: 30px; width: 100%; max-width: 1200px; margin-top: 20px; flex-wrap: wrap; }
+        .card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 20px; flex: 1; min-width: 300px; }
+        .full-width { width: 100%; max-width: 1200px; }
     </style>
 </head>
 <body>
     <h1>JSON Schema Ecosystem Observability</h1>
-    <p>Last Updated: 12/3/2026, 4:35:47 pm</p>
+    <p>Last Updated: 19/3/2026, 11:19:08 pm</p>
+    
+    <div class="card full-width" style="margin-bottom: 20px;">
+        <canvas id="trendChart" height="80"></canvas>
+    </div>
+
     <div class="dashboard">
         <div class="card"><canvas id="npmChart"></canvas></div>
         <div class="card"><canvas id="githubChart"></canvas></div>
+        <div class="card"><canvas id="supportChart"></canvas></div>
     </div>
     <script>
+        // Extract Trend Data
+        const trendData = [{"downloads":13989193,"day":"2026-02-15"},{"downloads":30625731,"day":"2026-02-16"},{"downloads":34740335,"day":"2026-02-17"},{"downloads":36965057,"day":"2026-02-18"},{"downloads":38339722,"day":"2026-02-19"},{"downloads":34587694,"day":"2026-02-20"},{"downloads":17027573,"day":"2026-02-21"},{"downloads":16960633,"day":"2026-02-22"},{"downloads":39251687,"day":"2026-02-23"},{"downloads":43007044,"day":"2026-02-24"},{"downloads":44315813,"day":"2026-02-25"},{"downloads":42311084,"day":"2026-02-26"},{"downloads":38079677,"day":"2026-02-27"},{"downloads":17211422,"day":"2026-02-28"},{"downloads":18290209,"day":"2026-03-01"},{"downloads":40590226,"day":"2026-03-02"},{"downloads":42865001,"day":"2026-03-03"},{"downloads":45799176,"day":"2026-03-04"},{"downloads":45670104,"day":"2026-03-05"},{"downloads":42333700,"day":"2026-03-06"},{"downloads":22833376,"day":"2026-03-07"},{"downloads":19759451,"day":"2026-03-08"},{"downloads":44880913,"day":"2026-03-09"},{"downloads":0,"day":"2026-03-10"},{"downloads":45154387,"day":"2026-03-11"},{"downloads":45248314,"day":"2026-03-12"},{"downloads":40805677,"day":"2026-03-13"},{"downloads":19740444,"day":"2026-03-14"},{"downloads":19923044,"day":"2026-03-15"},{"downloads":47259992,"day":"2026-03-16"}];
+        const trendLabels = trendData.map(d => d.day);
+        const trendValues = trendData.map(d => d.downloads);
+
+        // 1. Line Chart (Historical Trend)
+        new Chart(document.getElementById('trendChart'), {
+            type: 'line',
+            data: {
+                labels: trendLabels,
+                datasets: [{
+                    label: 'AJV Daily Downloads',
+                    data: trendValues,
+                    borderColor: '#58a6ff',
+                    backgroundColor: 'rgba(88, 166, 255, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { plugins: { title: { display: true, text: '30-Day Ecosystem Pulse (AJV Downloads)', color: '#fff' }, legend: {display: false} }, scales: { y: { beginAtZero: false } } }
+        });
+
+        // 2. Market Share Bar Chart
         new Chart(document.getElementById('npmChart'), {
             type: 'bar',
             data: {
-                labels: ['AJV', 'jsonschema', 'Yup'],
-                datasets: [{ label: 'Downloads', data: [220631931, 4749241, 8545645], backgroundColor: ['#cb3837', '#f39c12', '#3498db'] }]
+                labels: ['AJV (Node)', 'jsonschema (Node)', 'Yup (Node)', 'jsonschema (Python)'],
+                datasets: [{ label: 'Downloads', data: [218131858, 4633320, 8514663, 97529336], backgroundColor: ['#cb3837', '#f39c12', '#3498db', '#306998'] }]
             },
-            options: { plugins: { title: { display: true, text: 'Validator Market Share', color: '#fff' }, legend: {display: false} } }
+            options: { plugins: { title: { display: true, text: 'Cross-Language Validator Usage', color: '#fff' }, legend: {display: false} } }
         });
+
+        // 3. GitHub Health Chart
         new Chart(document.getElementById('githubChart'), {
             type: 'bar',
             data: {
                 labels: ['Repos w/ Topic', 'Spec Stars', 'Spec Issues'],
-                datasets: [{ label: 'Stats', data: [2414, 4893, 68], backgroundColor: ['#2ea043', '#e3b341', '#f85149'] }]
+                datasets: [{ label: 'Stats', data: [2443, 4904, 65], backgroundColor: ['#2ea043', '#e3b341', '#f85149'] }]
             },
             options: { scales: { y: { type: 'logarithmic' } }, plugins: { title: { display: true, text: 'GitHub Health (Log Scale)', color: '#fff' }, legend: {display: false} } }
+        });
+
+        // 4. Community Support Chart
+        new Chart(document.getElementById('supportChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Stack Overflow Questions'],
+                datasets: [{ label: 'Questions', data: [0], backgroundColor: ['#f48024'] }]
+            },
+            options: { plugins: { title: { display: true, text: 'Community Support Needs', color: '#fff' }, legend: {display: false} } }
         });
     </script>
 </body>

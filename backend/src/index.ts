@@ -1,13 +1,24 @@
-import express from 'express';
-import metricsRoutes from './routes/metrics';
+/**
+ * index.ts — CLI entry point
+ *
+ * Usage:
+ *   npx ts-node src/index.ts            # collect & save
+ *   npx ts-node src/index.ts --dry-run  # print metrics to stdout only
+ */
+import { collectAndSave } from './controllers/MetricsController';
 
-const app = express();
-const PORT = 3000;
+const isDryRun = process.argv.includes('--dry-run');
 
-app.use(express.json());
-app.use('/api/metrics', metricsRoutes);
-
-app.listen(PORT, () => {
-    console.log(`\n🚀 Server is running on http://localhost:${PORT}`);
-    console.log(`👉 To run the task, send a POST request to http://localhost:${PORT}/api/metrics/generate`);
-});
+(async () => {
+  try {
+    if (isDryRun) {
+      console.log('[index] Dry run — no files will be written.');
+      process.env.DRY_RUN = 'true';
+    }
+    await collectAndSave();
+    process.exit(0);
+  } catch (err) {
+    console.error('[index] Fatal error:', err);
+    process.exit(1);
+  }
+})();

@@ -1,22 +1,16 @@
 {
-  "name": "backend",
+  "name": "json-schema-ecosystem-backend",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "JSON Schema Ecosystem Observability - GSoC 2026",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "dependencies": {
-    "express": "^5.2.1"
+    "collect": "ts-node src/index.ts",
+    "dashboard": "ts-node src/services/generateDashboard.ts",
+    "build": "tsc"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/node": "^25.4.0",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0"
   }
 }

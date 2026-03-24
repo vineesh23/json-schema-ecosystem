@@ -1,17 +1,41 @@
-export interface MetricDetail {
-    name: string;
-    value: number;
-    source: 'npm' | 'github';
-    category: string;
-    description: string;
+export interface NpmTrendPoint {
+  downloads: number;
+  day: string;
 }
 
-export class EcosystemMetric {
-    public timestamp: string;
-    public metrics: MetricDetail[];
+export interface GithubRepoStats {
+  stars: number;
+  openIssues: number;
+  forks: number;
+  watchers: number;
+}
 
-    constructor(metrics: MetricDetail[]) {
-        this.timestamp = new Date().toISOString();
-        this.metrics = metrics;
-    }
+export type MetricSource = 'npm' | 'github' | 'pypi' | 'stackoverflow';
+export type MetricCategory =
+  | 'validator_market_share'
+  | 'community_health'
+  | 'cross_language_adoption'
+  | 'community_support'
+  | 'historical_trend';
+
+export interface MetricDetail<T = number | NpmTrendPoint[] | GithubRepoStats> {
+  name: string;
+  value: T;
+  source: MetricSource;
+  category: MetricCategory;
+  description: string;
+}
+
+export interface EcosystemSnapshot {
+  timestamp: string;           // ISO-8601
+  schemaVersion: string;       // bump when shape changes
+  metrics: MetricDetail[];
+}
+
+export function buildSnapshot(metrics: MetricDetail[]): EcosystemSnapshot {
+  return {
+    timestamp: new Date().toISOString(),
+    schemaVersion: '2.0.0',
+    metrics,
+  };
 }

@@ -1,4 +1,58 @@
-<!DOCTYPE html>
+/**
+ * generateDashboard.ts
+ * Reads metrics-latest.json → writes output/dashboard.html
+ */
+import * as fs from 'fs';
+import * as path from 'path';
+import { EcosystemSnapshot, MetricDetail, NpmTrendPoint } from '../models/EcosystemMetric';
+
+const outputDir = path.join(process.cwd(), 'output');
+const dataPath  = path.join(outputDir, 'metrics-latest.json');
+
+if (!fs.existsSync(dataPath)) {
+  console.error('❌  metrics-latest.json not found. Run the collector first.');
+  process.exit(1);
+}
+
+const snapshot: EcosystemSnapshot = JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
+
+// ── helpers ────────────────────────────────────────────────────────────────
+function getMetric<T>(name: string): T | undefined {
+  const m = snapshot.metrics.find((x: MetricDetail) => x.name === name);
+  return m ? (m.value as T) : undefined;
+}
+
+function getNum(name: string, fallback = 0): number {
+  return (getMetric<number>(name) as number) ?? fallback;
+}
+
+// ── npm market-share data ──────────────────────────────────────────────────
+const npmValidators = [
+  { label: 'AJV',                    key: 'npm_weekly_ajv',                   color: '#e06c75' },
+  { label: 'Zod',                    key: 'npm_weekly_zod',                   color: '#61afef' },
+  { label: 'Yup',                    key: 'npm_weekly_yup',                   color: '#e5c07b' },
+  { label: 'Joi',                    key: 'npm_weekly_joi',                   color: '#56b6c2' },
+  { label: 'jsonschema',             key: 'npm_weekly_jsonschema',             color: '#98c379' },
+  { label: '@cfworker/json-schema',  key: 'npm_weekly__cfworker_json_schema', color: '#c678dd' },
+];
+
+// ── trend data ─────────────────────────────────────────────────────────────
+const ajvTrend   = getMetric<NpmTrendPoint[]>('ajv_30day_trend')  ?? [];
+const zodTrend   = getMetric<NpmTrendPoint[]>('zod_30day_trend')  ?? [];
+const trendLabels = ajvTrend.map((d) => d.day);
+
+// ── GitHub stats ───────────────────────────────────────────────────────────
+const specStats  = getMetric<{ stars: number; openIssues: number; forks: number; watchers: number }>('github_stats_json_schema_spec');
+const ajvStats   = getMetric<{ stars: number; openIssues: number; forks: number }>('github_stats_ajv');
+
+// ── community support ──────────────────────────────────────────────────────
+const soJsonSchema = getNum('stackoverflow_json_schema');
+const soAjv        = getNum('stackoverflow_ajv');
+
+const updatedAt = new Date(snapshot.timestamp).toUTCString();
+
+// ── HTML ──────────────────────────────────────────────────────────────────
+const html = /* html */`<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -89,7 +143,7 @@
 
 <header>
   <h1>JSON Schema <span>Ecosystem</span> Observability</h1>
-  <p class="updated">Last updated: Tue, 24 Mar 2026 12:24:19 GMT</p>
+  <p class="updated">Last updated: ${updatedAt}</p>
 </header>
 
 <div class="grid">
@@ -97,22 +151,22 @@
   <!-- KPI stat cards -->
   <div class="card col-3">
     <p class="card-title">AJV Weekly Downloads</p>
-    <p class="stat-value">280.1M</p>
+    <p class="stat-value">${fmtM(getNum('npm_weekly_ajv'))}</p>
     <p class="stat-label">npm • last 7 days</p>
   </div>
   <div class="card col-3">
     <p class="card-title">Spec Stars</p>
-    <p class="stat-value">4.9k</p>
+    <p class="stat-value">${fmtK(specStats?.stars ?? 0)}</p>
     <p class="stat-label">json-schema-org/json-schema-spec</p>
   </div>
   <div class="card col-3">
     <p class="card-title">GitHub Topic Repos</p>
-    <p class="stat-value">2.5k</p>
+    <p class="stat-value">${fmtK(getNum('github_topic_json_schema'))}</p>
     <p class="stat-label">repos tagged "json-schema"</p>
   </div>
   <div class="card col-3">
     <p class="card-title">Stack Overflow Q&amp;A</p>
-    <p class="stat-value">0</p>
+    <p class="stat-value">${fmtK(soJsonSchema)}</p>
     <p class="stat-label">questions tagged "json-schema"</p>
   </div>
 
@@ -172,8 +226,8 @@ function merge(a, b) { return JSON.parse(JSON.stringify(Object.assign({}, a, b, 
 })))}
 
 // 1. 30-day trend
-const ajvTrend  = [{"downloads":16960633,"day":"2026-02-22"},{"downloads":39251687,"day":"2026-02-23"},{"downloads":43007044,"day":"2026-02-24"},{"downloads":44315813,"day":"2026-02-25"},{"downloads":42311084,"day":"2026-02-26"},{"downloads":38079677,"day":"2026-02-27"},{"downloads":17211422,"day":"2026-02-28"},{"downloads":18290209,"day":"2026-03-01"},{"downloads":40590226,"day":"2026-03-02"},{"downloads":42865001,"day":"2026-03-03"},{"downloads":45799176,"day":"2026-03-04"},{"downloads":45670104,"day":"2026-03-05"},{"downloads":42333700,"day":"2026-03-06"},{"downloads":22833376,"day":"2026-03-07"},{"downloads":19759451,"day":"2026-03-08"},{"downloads":44880913,"day":"2026-03-09"},{"downloads":0,"day":"2026-03-10"},{"downloads":45154387,"day":"2026-03-11"},{"downloads":45248314,"day":"2026-03-12"},{"downloads":40805677,"day":"2026-03-13"},{"downloads":19740444,"day":"2026-03-14"},{"downloads":19923044,"day":"2026-03-15"},{"downloads":47259992,"day":"2026-03-16"},{"downloads":49336265,"day":"2026-03-17"},{"downloads":48978847,"day":"2026-03-18"},{"downloads":47716918,"day":"2026-03-19"},{"downloads":42435931,"day":"2026-03-20"},{"downloads":22332134,"day":"2026-03-21"},{"downloads":22864036,"day":"2026-03-22"},{"downloads":46442621,"day":"2026-03-23"}];
-const zodTrend  = [{"downloads":7925407,"day":"2026-02-22"},{"downloads":16717129,"day":"2026-02-23"},{"downloads":18841066,"day":"2026-02-24"},{"downloads":17735329,"day":"2026-02-25"},{"downloads":17113073,"day":"2026-02-26"},{"downloads":15706456,"day":"2026-02-27"},{"downloads":8011378,"day":"2026-02-28"},{"downloads":7966191,"day":"2026-03-01"},{"downloads":17158234,"day":"2026-03-02"},{"downloads":17565706,"day":"2026-03-03"},{"downloads":18856966,"day":"2026-03-04"},{"downloads":18304680,"day":"2026-03-05"},{"downloads":16787787,"day":"2026-03-06"},{"downloads":9209190,"day":"2026-03-07"},{"downloads":8867849,"day":"2026-03-08"},{"downloads":18126967,"day":"2026-03-09"},{"downloads":0,"day":"2026-03-10"},{"downloads":18851695,"day":"2026-03-11"},{"downloads":18965482,"day":"2026-03-12"},{"downloads":17388500,"day":"2026-03-13"},{"downloads":9036109,"day":"2026-03-14"},{"downloads":8752489,"day":"2026-03-15"},{"downloads":20167824,"day":"2026-03-16"},{"downloads":21991246,"day":"2026-03-17"},{"downloads":23139978,"day":"2026-03-18"},{"downloads":22162636,"day":"2026-03-19"},{"downloads":17969300,"day":"2026-03-20"},{"downloads":10709893,"day":"2026-03-21"},{"downloads":10380778,"day":"2026-03-22"},{"downloads":22223907,"day":"2026-03-23"}];
+const ajvTrend  = ${JSON.stringify(ajvTrend)};
+const zodTrend  = ${JSON.stringify(zodTrend)};
 const trendLabels = ajvTrend.map(d => d.day);
 new Chart(document.getElementById('trendChart'), {
   type: 'line',
@@ -194,7 +248,7 @@ new Chart(document.getElementById('trendChart'), {
 });
 
 // 2. Market share
-const validators = [{"label":"AJV","value":280106752,"color":"#e06c75"},{"label":"Zod","value":128577738,"color":"#61afef"},{"label":"Yup","value":10448032,"color":"#e5c07b"},{"label":"Joi","value":17992109,"color":"#56b6c2"},{"label":"jsonschema","value":5809282,"color":"#98c379"},{"label":"@cfworker/json-schema","value":0,"color":"#c678dd"}];
+const validators = ${JSON.stringify(npmValidators.map(v => ({ label: v.label, value: getNum(v.key), color: v.color })))};
 new Chart(document.getElementById('marketChart'), {
   type: 'bar',
   data: {
@@ -214,7 +268,7 @@ new Chart(document.getElementById('pypiChart'), {
   type: 'doughnut',
   data: {
     labels: ['jsonschema', 'Pydantic', 'fastjsonschema'],
-    datasets: [{ data: [103969904, 173122252, 32261414],
+    datasets: [{ data: [${getNum('pypi_weekly_jsonschema')}, ${getNum('pypi_weekly_pydantic')}, ${getNum('pypi_weekly_fastjsonschema')}],
       backgroundColor: ['#306998cc','#4caf50cc','#ff9800cc'],
       borderColor: ['#306998','#4caf50','#ff9800'], borderWidth: 1 }]
   },
@@ -227,7 +281,7 @@ new Chart(document.getElementById('githubChart'), {
   data: {
     labels: ['spec stars', 'spec forks', 'spec issues', 'ajv stars', 'ajv issues'],
     datasets: [{ label: 'Count',
-      data: [4910, 416, 64, 14650, 322],
+      data: [${specStats?.stars ?? 0}, ${specStats?.forks ?? 0}, ${specStats?.openIssues ?? 0}, ${ajvStats?.stars ?? 0}, ${ajvStats?.openIssues ?? 0}],
       backgroundColor: ['#3fb950cc','#58a6ffcc','#f85149cc','#e06c75cc','#f85149cc'],
       borderColor:     ['#3fb950',  '#58a6ff',  '#f85149',  '#e06c75',  '#f85149'  ],
       borderWidth: 1 }]
@@ -242,16 +296,25 @@ new Chart(document.getElementById('soChart'), {
   data: {
     labels: ['json-schema', 'jsonschema', 'ajv'],
     datasets: [{ label: 'Questions',
-      data: [0, 3581, 396],
+      data: [${soJsonSchema}, ${getNum('stackoverflow_jsonschema')}, ${soAjv}],
       backgroundColor: '#f48024cc', borderColor: '#f48024', borderWidth: 1 }]
   },
   options: merge(CHART_DEFAULTS, { plugins: { legend: { display: false } },
     scales: { y: { ticks: { callback: v => fmtK(v) } } } })
 });
 
-// formatters 
+// ── formatters ──────────────────────────────────────────────────────────
 function fmtK(n) { return n >= 1000 ? (n/1000).toFixed(1)+'k' : String(n); }
 function fmtM(n) { return n >= 1e6  ? (n/1e6).toFixed(1)+'M'  : fmtK(n); }
 </script>
 </body>
-</html>
+</html>`;
+
+// ── write ──────────────────────────────────────────────────────────────────
+fs.mkdirSync(outputDir, { recursive: true });
+fs.writeFileSync(path.join(outputDir, 'dashboard.html'), html, 'utf-8');
+console.log('✅  dashboard.html generated');
+
+// ── small helpers (TS side) ────────────────────────────────────────────────
+function fmtK(n: number): string { return n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n); }
+function fmtM(n: number): string { return n >= 1e6  ? (n / 1e6).toFixed(1)  + 'M' : fmtK(n); }

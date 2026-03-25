@@ -32,7 +32,11 @@ export class ApiService {
     }
   }
 
-  // npm 
+  private sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  // ── npm ──────────────────────────────────────────────────────────────────
 
   async fetchNpmWeeklyDownloads(pkg: string): Promise<number> {
     console.log(`[npm] weekly downloads → ${pkg}`);
@@ -52,7 +56,7 @@ export class ApiService {
     return data.downloads;
   }
 
-  // GitHub 
+  // ── GitHub ───────────────────────────────────────────────────────────────
 
   async fetchGithubTopicRepoCount(topic: string): Promise<number> {
     console.log(`[github] topic count → ${topic}`);
@@ -84,22 +88,27 @@ export class ApiService {
     };
   }
 
-  // PyPI 
+  // ── PyPI ─────────────────────────────────────────────────────────────────
+  // pypistats.org rate-limits aggressively (HTTP 429) in CI environments.
+  // Fix: 2s delay before each call + always fallback to 0 on failure.
 
   async fetchPypiWeeklyDownloads(pkg: string): Promise<number> {
     console.log(`[pypi] weekly downloads → ${pkg}`);
+    await this.sleep(2000); // prevent 429 in CI
     const data = await this.safeFetch<{ data: { last_week: number } }>(
       `pypi/${pkg}`,
-      `https://pypistats.org/api/packages/${pkg}/recent`
+      `https://pypistats.org/api/packages/${pkg}/recent`,
+      {},
+      { data: { last_week: 0 } } // never throw on 429
     );
     return data.data.last_week;
   }
 
-  // Stack Overflow 
+  // ── Stack Overflow ───────────────────────────────────────────────────────
+
   async fetchStackOverflowTagCount(tag: string): Promise<number> {
     console.log(`[stackoverflow] tag count → ${tag}`);
 
-    
     const urls = [
       `https://api.stackexchange.com/2.3/tags/${encodeURIComponent(tag)}/info?site=stackoverflow`,
       `https://api.stackexchange.com/2.3/tags?inname=${encodeURIComponent(tag)}&site=stackoverflow&order=desc&sort=popular`,
@@ -119,7 +128,6 @@ export class ApiService {
         if (data.quota_remaining !== undefined && data.quota_remaining < 10) {
           console.warn(`⚠️  [stackoverflow] quota low: ${data.quota_remaining} remaining`);
         }
-        // API returns either 'count' or 'question_count' depending on endpoint
         return item.question_count ?? item.count ?? 0;
       }
     }

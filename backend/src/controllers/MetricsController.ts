@@ -5,33 +5,32 @@ import { buildSnapshot, MetricDetail, NpmTrendPoint } from '../models/EcosystemM
 const api = new ApiService();
 const repo = new JsonRepository();
 
-// ── Validators to track ────────────────────────────────────────────────────
 const NPM_VALIDATORS = [
-  { name: 'ajv',                    label: 'AJV' },
-  { name: 'jsonschema',             label: 'jsonschema (npm)' },
-  { name: 'zod',                    label: 'Zod' },
-  { name: 'yup',                    label: 'Yup' },
-  { name: '@cfworker/json-schema',  label: '@cfworker/json-schema' },
-  { name: 'joi',                    label: 'Joi' },
+  { name: 'ajv',                   label: 'AJV' },
+  { name: 'jsonschema',            label: 'jsonschema (npm)' },
+  { name: 'zod',                   label: 'Zod' },
+  { name: 'yup',                   label: 'Yup' },
+  { name: '@cfworker/json-schema', label: '@cfworker/json-schema' },
+  { name: 'joi',                   label: 'Joi' },
 ];
 
+// PyPI packages fetched SEQUENTIALLY (rate limit protection)
 const PYPI_VALIDATORS = [
-  { name: 'jsonschema',   label: 'jsonschema (PyPI)' },
-  { name: 'pydantic',     label: 'Pydantic' },
+  { name: 'jsonschema',     label: 'jsonschema (PyPI)' },
+  { name: 'pydantic',       label: 'Pydantic' },
   { name: 'fastjsonschema', label: 'fastjsonschema (PyPI)' },
 ];
 
 const GITHUB_REPOS = [
-  { owner: 'json-schema-org', repo: 'json-schema-spec',     label: 'json-schema-spec' },
-  { owner: 'json-schema-org', repo: 'JSON-Schema-Test-Suite',label: 'test-suite' },
-  { owner: 'ajv-validator',   repo: 'ajv',                   label: 'ajv' },
+  { owner: 'json-schema-org', repo: 'json-schema-spec',      label: 'json-schema-spec' },
+  { owner: 'json-schema-org', repo: 'JSON-Schema-Test-Suite', label: 'test-suite' },
+  { owner: 'ajv-validator',   repo: 'ajv',                    label: 'ajv' },
 ];
 
-// ── Main collect function ──────────────────────────────────────────────────
 export async function collectAndSave(): Promise<void> {
   console.log('\n══ Starting ecosystem data collection ══\n');
 
-  // 1. npm weekly downloads for all validators
+  // 1. npm — all concurrent (npm API has no rate limit issues)
   const npmDownloads = await Promise.all(
     NPM_VALIDATORS.map(async ({ name, label }) => {
       const value = await api.fetchNpmWeeklyDownloads(name);
@@ -45,21 +44,20 @@ export async function collectAndSave(): Promise<void> {
     })
   );
 
-  // 2. PyPI weekly downloads
-  const pypiDownloads = await Promise.all(
-    PYPI_VALIDATORS.map(async ({ name, label }) => {
-      const value = await api.fetchPypiWeeklyDownloads(name);
-      return {
-        name: `pypi_weekly_${name}`,
-        value,
-        source: 'pypi',
-        category: 'cross_language_adoption',
-        description: `Weekly PyPI downloads — ${label}`,
-      } satisfies MetricDetail<number>;
-    })
-  );
+  // 2. PyPI — SEQUENTIAL with built-in 2s delay to avoid 429 in CI
+  const pypiDownloads: MetricDetail<number>[] = [];
+  for (const { name, label } of PYPI_VALIDATORS) {
+    const value = await api.fetchPypiWeeklyDownloads(name);
+    pypiDownloads.push({
+      name: `pypi_weekly_${name}`,
+      value,
+      source: 'pypi',
+      category: 'cross_language_adoption',
+      description: `Weekly PyPI downloads — ${label}`,
+    } satisfies MetricDetail<number>);
+  }
 
-  // 3. GitHub repo stats
+  // 3. GitHub — concurrent (authenticated = 5000 req/hr)
   const githubStats = await Promise.all(
     GITHUB_REPOS.map(async ({ owner, repo, label }) => {
       const value = await api.fetchGithubRepoStats(owner, repo);
@@ -87,10 +85,9 @@ export async function collectAndSave(): Promise<void> {
     })
   );
 
-  // 5. Stack Overflow question counts
-  const soTags = ['json-schema', 'jsonschema', 'ajv'];
+  // 5. Stack Overflow
   const soMetrics = await Promise.all(
-    soTags.map(async (tag) => {
+    ['json-schema', 'jsonschema', 'ajv'].map(async (tag) => {
       const value = await api.fetchStackOverflowTagCount(tag);
       return {
         name: `stackoverflow_${tag.replace(/-/g, '_')}`,
@@ -102,8 +99,12 @@ export async function collectAndSave(): Promise<void> {
     })
   );
 
-  // 6. AJV 30-day trend (the main "pulse" chart)
-  const ajvTrend = await api.fetchNpmTrend('ajv');
+  // 6. Trend data
+  const [ajvTrend, zodTrend] = await Promise.all([
+    api.fetchNpmTrend('ajv'),
+    api.fetchNpmTrend('zod'),
+  ]);
+
   const trendMetric: MetricDetail<NpmTrendPoint[]> = {
     name: 'ajv_30day_trend',
     value: ajvTrend,
@@ -112,8 +113,6 @@ export async function collectAndSave(): Promise<void> {
     description: 'AJV daily download counts for last 30 days',
   };
 
-  // 7. Zod 30-day trend (rising validator — shows ecosystem evolution)
-  const zodTrend = await api.fetchNpmTrend('zod');
   const zodTrendMetric: MetricDetail<NpmTrendPoint[]> = {
     name: 'zod_30day_trend',
     value: zodTrend,

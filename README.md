@@ -117,7 +117,6 @@ To add a new metric:
 3. Add a chart/stat card in `generateDashboard.ts`
 
 The schema is versioned (`schemaVersion` in each snapshot) so breaking changes are trackable.
-
 # Part 2: Existing Code Evaluation — JSON Schema Ecosystem
 
 > **Repository under review:** [`json-schema-org/ecosystem`](https://github.com/json-schema-org/ecosystem) → `projects/initial-data/`
@@ -168,8 +167,8 @@ Flat CSV files work for a quick demo but are brittle at scale. There is no schem
 ### 5. Plain JavaScript, Not TypeScript
 The task specification explicitly requests **Node.js/TypeScript**, but the existing code is plain JavaScript. Without types, the shape of API responses is implicit and easy to break silently — either when the API changes or when a new contributor misunderstands the data contract.
 
-### 6. Tests Are Incomplete
-While the test infrastructure exists, the test suite only verifies the happy path: that a file is created and a correct value is written. There are no tests for error paths, malformed responses, or missing output directories. For a production automation job, this is insufficient coverage.
+### 6. Tests Are Broken, Not Just Incomplete
+The test suite does not run at all. `mocks/server.js` uses ESM `import` syntax while the project's Babel config expects CommonJS — Jest crashes before executing a single test with **"Jest encountered an unexpected token"**. This means the mock infrastructure, while well-structured in intent, is non-functional as shipped. The fix is a one-line change to `jest.config.js` (`transformIgnorePatterns`), but the fact that this shipped broken is a signal that the codebase was not fully validated before being committed.
 
 ### 7. No Scheduling or Automation
 The script must be run manually. There is no GitHub Actions workflow or cron job setup. An observability system that cannot run itself is not yet an observability system.
@@ -180,31 +179,42 @@ The script must be run manually. There is no GitHub Actions workflow or cron job
 
 **Did I run it? Yes.**
 
-### Attempt 1 — No authentication token
+### Test suite — `npm test`
 
 ```bash
-$ node dataRecorder.js
-```
-
-**Result:** The script failed with an `HTTP 403` error from the GitHub Search API. This is the expected behaviour for unauthenticated requests once the rate limit is hit. No CSV file was produced. This immediately confirmed the missing-auth limitation as a real, blocking issue — not a theoretical one.
-
-### Attempt 2 — With a personal access token injected manually
-
-After manually adding an `Authorization: Bearer <token>` header to the `https.get()` options:
-
-```bash
-$ node dataRecorder.js
-```
-
-**Result:** Success. The script ran cleanly and produced a CSV file with the current repository count. The output filename was correctly timestamped.
-
-### Test suite
-
-```bash
+$ cd projects/initial-data
 $ npm test
 ```
 
-**Result:** All tests passed. The Jest mock intercepted the API call correctly and the file-write assertion succeeded. This confirms the mock wiring is functional.
+**Result: ❌ FAILED — Test Suites: 1 failed, 1 total. Tests: 0 total.**
+
+```
+FAIL ./processRespository.test.js
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+```
+
+**Root cause:** `mocks/server.js` uses ESM `import` syntax (`import { setupServer } from 'msw/node'`), but the Jest + Babel configuration only handles CommonJS. When Jest tries to load the mock server via `jest.setup.js`, it hits the `export { until }` statement inside `node_modules/until-async/lib/index.js` and crashes — because `node_modules` are excluded from Babel transformation by default.
+
+The full call chain at failure:
+```
+mocks/server.js:1:1  →  jest.setup.js:2:1
+  ↳ import { setupServer } from 'msw/node'   ← ESM, not parseable by this Babel config
+```
+
+**Zero tests actually ran.** The test suite could not even be loaded, let alone executed. This is a real breakage in the existing codebase, not a configuration quirk — it means the mock infrastructure, while well-intentioned, is non-functional as shipped.
+
+**Fix required:** Either add `transformIgnorePatterns` to `jest.config.js` to allow Babel to transform `msw` and `until-async` from `node_modules`, or migrate `mocks/server.js` to use `require()` instead of `import`.
+
+```js
+// jest.config.js — fix
+transformIgnorePatterns: [
+  '/node_modules/(?!(msw|until-async)/)'
+]
+```
+
+This is a concrete example of why the existing codebase needs significant work before it can be trusted as a foundation.
 
 ---
 
@@ -255,6 +265,30 @@ headers: {
 ```
 
 Without this, nothing else matters — the script cannot run reliably in any automated environment.
+
+---
+## 🖥️ Execution Evidence
+
+### ❌ Test Suite — Broken Out of the Box (`npm test`)
+
+Running `npm test` fails before a single test executes:
+
+![Jest failure details](./terminal-test-fail-2.jpeg)
+![ESM export detail](./terminal-test-fail-3.jpeg)
+
+**Root cause:** `mocks/server.js` uses ESM `import` syntax but the Jest + Babel config only handles CommonJS. Jest crashes while loading the mock server — **0 tests ran**.
+
+**Fix required:**
+```js
+// jest.config.js
+transformIgnorePatterns: ['/node_modules/(?!(msw|until-async)/)']
+```
+
+### ❌ Script Execution (Silent Failure)
+
+Running `node main.js` (the intended entry point) without a `.env` file configured results in a **silent failure**. The script exits immediately without executing the API call and without throwing any warnings about a missing `GITHUB_TOKEN`.
+
+![Silent Execution Failure](./terminal-test-fail-1.jpeg)
 
 ---
 

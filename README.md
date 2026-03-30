@@ -31,6 +31,9 @@ Charts included:
 - GitHub health (log-scale bar)
 - Stack Overflow questions (bar)
 
+**Live Generated Dashboard:**
+![Dashboard Overview](./dashboard1.jpeg)
+![Dashboard Details](./dashboard2.jpeg)
 ---
 
 ## 🗄️ Output files
@@ -63,7 +66,11 @@ npx ts-node src/services/generateDashboard.ts
 
 # Open dashboard
 open output/dashboard.html
+
 ```
+**Pipeline Execution & Graceful Degradation in Action:**
+![Terminal Output 1](./terminal1.jpeg)
+![Terminal Output 2](./terminal2.jpeg)
 
 ---
 

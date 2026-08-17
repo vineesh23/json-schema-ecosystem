@@ -89,7 +89,7 @@
 
 <header>
   <h1>JSON Schema <span>Ecosystem</span> Observability</h1>
-  <p class="updated">Last updated: Sun, 16 Aug 2026 06:22:00 GMT</p>
+  <p class="updated">Last updated: Mon, 17 Aug 2026 06:33:04 GMT</p>
 </header>
 
 <div class="grid">
@@ -194,7 +194,7 @@ new Chart(document.getElementById('trendChart'), {
 });
 
 // 2. Market share
-const validators = [{"label":"AJV","value":316576557,"color":"#e06c75"},{"label":"Zod","value":224127336,"color":"#61afef"},{"label":"Yup","value":10684077,"color":"#e5c07b"},{"label":"Joi","value":20530470,"color":"#56b6c2"},{"label":"jsonschema","value":6287340,"color":"#98c379"},{"label":"@cfworker/json-schema","value":0,"color":"#c678dd"}];
+const validators = [{"label":"AJV","value":316576557,"color":"#e06c75"},{"label":"Zod","value":224127336,"color":"#61afef"},{"label":"Yup","value":10684077,"color":"#e5c07b"},{"label":"Joi","value":20530470,"color":"#56b6c2"},{"label":"jsonschema","value":5359308,"color":"#98c379"},{"label":"@cfworker/json-schema","value":0,"color":"#c678dd"}];
 new Chart(document.getElementById('marketChart'), {
   type: 'bar',
   data: {
@@ -214,7 +214,7 @@ new Chart(document.getElementById('pypiChart'), {
   type: 'doughnut',
   data: {
     labels: ['jsonschema', 'Pydantic', 'fastjsonschema'],
-    datasets: [{ data: [150154956, 279932856, 35337649],
+    datasets: [{ data: [150337289, 0, 0],
       backgroundColor: ['#306998cc','#4caf50cc','#ff9800cc'],
       borderColor: ['#306998','#4caf50','#ff9800'], borderWidth: 1 }]
   },
@@ -227,7 +227,7 @@ new Chart(document.getElementById('githubChart'), {
   data: {
     labels: ['spec stars', 'spec forks', 'spec issues', 'ajv stars', 'ajv issues'],
     datasets: [{ label: 'Count',
-      data: [5113, 453, 66, 14807, 376],
+      data: [5115, 453, 66, 14807, 376],
       backgroundColor: ['#3fb950cc','#58a6ffcc','#f85149cc','#e06c75cc','#f85149cc'],
       borderColor:     ['#3fb950',  '#58a6ff',  '#f85149',  '#e06c75',  '#f85149'  ],
       borderWidth: 1 }]

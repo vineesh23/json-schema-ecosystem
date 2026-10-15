@@ -1,66 +1,66 @@
 {
-  "timestamp": "2026-10-13T13:09:49.600Z",
+  "timestamp": "2026-10-15T10:33:07.802Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
       "name": "npm_weekly_ajv",
-      "value": 394285027,
+      "value": 391549685,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — AJV"
     },
     {
       "name": "npm_weekly_jsonschema",
-      "value": 5932648,
+      "value": 5823233,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — jsonschema (npm)"
     },
     {
       "name": "npm_weekly_zod",
-      "value": 346095287,
+      "value": 346947379,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Zod"
     },
     {
       "name": "npm_weekly_yup",
-      "value": 12821526,
+      "value": 12701798,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Yup"
     },
     {
       "name": "npm_weekly__cfworker_json-schema",
-      "value": 9791020,
+      "value": 10006393,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — @cfworker/json-schema"
     },
     {
       "name": "npm_weekly_joi",
-      "value": 25942290,
+      "value": 25856275,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Joi"
     },
     {
       "name": "pypi_weekly_jsonschema",
-      "value": 125812536,
+      "value": 127997569,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — jsonschema (PyPI)"
     },
     {
       "name": "pypi_weekly_pydantic",
-      "value": 230687350,
+      "value": 238098089,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — Pydantic"
     },
     {
       "name": "pypi_weekly_fastjsonschema",
-      "value": 28402759,
+      "value": 28416021,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — fastjsonschema (PyPI)"
@@ -68,9 +68,9 @@
     {
       "name": "github_stats_json_schema_spec",
       "value": {
-        "stars": 5181,
-        "openIssues": 68,
-        "forks": 460,
+        "stars": 5182,
+        "openIssues": 71,
+        "forks": 461,
         "watchers": 106
       },
       "source": "github",
@@ -80,9 +80,9 @@
     {
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
-        "stars": 754,
-        "openIssues": 62,
-        "forks": 311,
+        "stars": 755,
+        "openIssues": 60,
+        "forks": 314,
         "watchers": 42
       },
       "source": "github",
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4545,
+      "value": 4575,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""
@@ -124,7 +124,7 @@
     },
     {
       "name": "stackoverflow_jsonschema",
-      "value": 3559,
+      "value": 3561,
       "source": "stackoverflow",
       "category": "community_support",
       "description": "Stack Overflow question count for tag \"jsonschema\""
@@ -139,10 +139,6 @@
     {
       "name": "ajv_30day_trend",
       "value": [
-        {
-          "downloads": 33173192,
-          "day": "2026-09-12"
-        },
         {
           "downloads": 34191642,
           "day": "2026-09-13"
@@ -258,6 +254,10 @@
         {
           "downloads": 40931633,
           "day": "2026-10-11"
+        },
+        {
+          "downloads": 73750094,
+          "day": "2026-10-12"
         }
       ],
       "source": "npm",
@@ -267,10 +267,6 @@
     {
       "name": "zod_30day_trend",
       "value": [
-        {
-          "downloads": 28922633,
-          "day": "2026-09-12"
-        },
         {
           "downloads": 29407782,
           "day": "2026-09-13"
@@ -386,6 +382,10 @@
         {
           "downloads": 41522624,
           "day": "2026-10-11"
+        },
+        {
+          "downloads": 62426874,
+          "day": "2026-10-12"
         }
       ],
       "source": "npm",

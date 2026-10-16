@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-15T10:33:07.802Z",
+  "timestamp": "2026-10-16T10:19:57.170Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
@@ -46,21 +46,21 @@
     },
     {
       "name": "pypi_weekly_jsonschema",
-      "value": 127997569,
+      "value": 130339610,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — jsonschema (PyPI)"
     },
     {
       "name": "pypi_weekly_pydantic",
-      "value": 238098089,
+      "value": 241221845,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — Pydantic"
     },
     {
       "name": "pypi_weekly_fastjsonschema",
-      "value": 28416021,
+      "value": 28583346,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — fastjsonschema (PyPI)"
@@ -68,9 +68,9 @@
     {
       "name": "github_stats_json_schema_spec",
       "value": {
-        "stars": 5182,
+        "stars": 5183,
         "openIssues": 71,
-        "forks": 461,
+        "forks": 462,
         "watchers": 106
       },
       "source": "github",
@@ -80,9 +80,9 @@
     {
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
-        "stars": 755,
-        "openIssues": 60,
-        "forks": 314,
+        "stars": 754,
+        "openIssues": 63,
+        "forks": 315,
         "watchers": 42
       },
       "source": "github",
@@ -92,9 +92,9 @@
     {
       "name": "github_stats_ajv",
       "value": {
-        "stars": 14861,
+        "stars": 14862,
         "openIssues": 383,
-        "forks": 1052,
+        "forks": 1053,
         "watchers": 111
       },
       "source": "github",
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4575,
+      "value": 4599,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""
@@ -124,7 +124,7 @@
     },
     {
       "name": "stackoverflow_jsonschema",
-      "value": 3561,
+      "value": 3560,
       "source": "stackoverflow",
       "category": "community_support",
       "description": "Stack Overflow question count for tag \"jsonschema\""

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-16T10:19:57.170Z",
+  "timestamp": "2026-10-17T09:52:56.991Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
@@ -46,21 +46,21 @@
     },
     {
       "name": "pypi_weekly_jsonschema",
-      "value": 130339610,
+      "value": 132268338,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — jsonschema (PyPI)"
     },
     {
       "name": "pypi_weekly_pydantic",
-      "value": 241221845,
+      "value": 242186103,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — Pydantic"
     },
     {
       "name": "pypi_weekly_fastjsonschema",
-      "value": 28583346,
+      "value": 28540986,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — fastjsonschema (PyPI)"
@@ -68,7 +68,7 @@
     {
       "name": "github_stats_json_schema_spec",
       "value": {
-        "stars": 5183,
+        "stars": 5184,
         "openIssues": 71,
         "forks": 462,
         "watchers": 106
@@ -81,7 +81,7 @@
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
         "stars": 754,
-        "openIssues": 63,
+        "openIssues": 66,
         "forks": 315,
         "watchers": 42
       },
@@ -92,9 +92,9 @@
     {
       "name": "github_stats_ajv",
       "value": {
-        "stars": 14862,
-        "openIssues": 383,
-        "forks": 1053,
+        "stars": 14863,
+        "openIssues": 388,
+        "forks": 1055,
         "watchers": 111
       },
       "source": "github",
@@ -103,14 +103,14 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4599,
+      "value": 4620,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""
     },
     {
       "name": "github_topic_jsonschema",
-      "value": 460,
+      "value": 462,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"jsonschema\""

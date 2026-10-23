@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-22T10:50:02.371Z",
+  "timestamp": "2026-10-23T10:41:55.980Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
@@ -68,8 +68,8 @@
     {
       "name": "github_stats_json_schema_spec",
       "value": {
-        "stars": 5190,
-        "openIssues": 71,
+        "stars": 5192,
+        "openIssues": 72,
         "forks": 465,
         "watchers": 106
       },
@@ -81,8 +81,8 @@
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
         "stars": 755,
-        "openIssues": 61,
-        "forks": 321,
+        "openIssues": 65,
+        "forks": 322,
         "watchers": 41
       },
       "source": "github",
@@ -92,9 +92,9 @@
     {
       "name": "github_stats_ajv",
       "value": {
-        "stars": 14863,
-        "openIssues": 391,
-        "forks": 1059,
+        "stars": 14865,
+        "openIssues": 393,
+        "forks": 1061,
         "watchers": 111
       },
       "source": "github",
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4722,
+      "value": 4741,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""

@@ -1,45 +1,45 @@
 {
-  "timestamp": "2026-10-28T11:49:21.563Z",
+  "timestamp": "2026-10-29T11:57:20.049Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
       "name": "npm_weekly_ajv",
-      "value": 340732501,
+      "value": 427242323,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — AJV"
     },
     {
       "name": "npm_weekly_jsonschema",
-      "value": 5421141,
+      "value": 6909562,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — jsonschema (npm)"
     },
     {
       "name": "npm_weekly_zod",
-      "value": 298521754,
+      "value": 371030659,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Zod"
     },
     {
       "name": "npm_weekly_yup",
-      "value": 10563028,
+      "value": 13528002,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Yup"
     },
     {
       "name": "npm_weekly__cfworker_json-schema",
-      "value": 9195933,
+      "value": 11522150,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — @cfworker/json-schema"
     },
     {
       "name": "npm_weekly_joi",
-      "value": 22177570,
+      "value": 28291966,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Joi"
@@ -68,7 +68,7 @@
     {
       "name": "github_stats_json_schema_spec",
       "value": {
-        "stars": 5199,
+        "stars": 5200,
         "openIssues": 71,
         "forks": 470,
         "watchers": 105
@@ -81,8 +81,8 @@
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
         "stars": 753,
-        "openIssues": 72,
-        "forks": 324,
+        "openIssues": 73,
+        "forks": 325,
         "watchers": 40
       },
       "source": "github",
@@ -92,7 +92,7 @@
     {
       "name": "github_stats_ajv",
       "value": {
-        "stars": 14866,
+        "stars": 14867,
         "openIssues": 395,
         "forks": 1060,
         "watchers": 109
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4834,
+      "value": 4862,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""
@@ -139,10 +139,6 @@
     {
       "name": "ajv_30day_trend",
       "value": [
-        {
-          "downloads": 37556046,
-          "day": "2026-09-27"
-        },
         {
           "downloads": 78375858,
           "day": "2026-09-28"
@@ -258,6 +254,10 @@
         {
           "downloads": 85329162,
           "day": "2026-10-26"
+        },
+        {
+          "downloads": 86509822,
+          "day": "2026-10-27"
         }
       ],
       "source": "npm",
@@ -267,10 +267,6 @@
     {
       "name": "zod_30day_trend",
       "value": [
-        {
-          "downloads": 34815317,
-          "day": "2026-09-27"
-        },
         {
           "downloads": 61763856,
           "day": "2026-09-28"
@@ -386,6 +382,10 @@
         {
           "downloads": 70533451,
           "day": "2026-10-26"
+        },
+        {
+          "downloads": 72508905,
+          "day": "2026-10-27"
         }
       ],
       "source": "npm",

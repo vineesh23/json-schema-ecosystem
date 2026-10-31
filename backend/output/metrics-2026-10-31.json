@@ -1,0 +1,396 @@
+{
+  "timestamp": "2026-10-31T11:24:44.680Z",
+  "schemaVersion": "2.0.0",
+  "metrics": [
+    {
+      "name": "npm_weekly_ajv",
+      "value": 515092679,
+      "source": "npm",
+      "category": "validator_market_share",
+      "description": "Weekly npm downloads — AJV"
+    },
+    {
+      "name": "npm_weekly_jsonschema",
+      "value": 8292916,
+      "source": "npm",
+      "category": "validator_market_share",
+      "description": "Weekly npm downloads — jsonschema (npm)"
+    },
+    {
+      "name": "npm_weekly_zod",
+      "value": 442969207,
+      "source": "npm",
+      "category": "validator_market_share",
+      "description": "Weekly npm downloads — Zod"
+    },
+    {
+      "name": "npm_weekly_yup",
+      "value": 16578323,
+      "source": "npm",
+      "category": "validator_market_share",
+      "description": "Weekly npm downloads — Yup"
+    },
+    {
+      "name": "npm_weekly__cfworker_json-schema",
+      "value": 13986216,
+      "source": "npm",
+      "category": "validator_market_share",
+      "description": "Weekly npm downloads — @cfworker/json-schema"
+    },
+    {
+      "name": "npm_weekly_joi",
+      "value": 34631226,
+      "source": "npm",
+      "category": "validator_market_share",
+      "description": "Weekly npm downloads — Joi"
+    },
+    {
+      "name": "pypi_weekly_jsonschema",
+      "value": 144320170,
+      "source": "pypi",
+      "category": "cross_language_adoption",
+      "description": "Weekly PyPI downloads — jsonschema (PyPI)"
+    },
+    {
+      "name": "pypi_weekly_pydantic",
+      "value": 258640581,
+      "source": "pypi",
+      "category": "cross_language_adoption",
+      "description": "Weekly PyPI downloads — Pydantic"
+    },
+    {
+      "name": "pypi_weekly_fastjsonschema",
+      "value": 29434819,
+      "source": "pypi",
+      "category": "cross_language_adoption",
+      "description": "Weekly PyPI downloads — fastjsonschema (PyPI)"
+    },
+    {
+      "name": "github_stats_json_schema_spec",
+      "value": {
+        "stars": 5203,
+        "openIssues": 69,
+        "forks": 472,
+        "watchers": 105
+      },
+      "source": "github",
+      "category": "community_health",
+      "description": "GitHub stats for json-schema-spec"
+    },
+    {
+      "name": "github_stats_JSON_Schema_Test_Suite",
+      "value": {
+        "stars": 754,
+        "openIssues": 72,
+        "forks": 326,
+        "watchers": 40
+      },
+      "source": "github",
+      "category": "community_health",
+      "description": "GitHub stats for test-suite"
+    },
+    {
+      "name": "github_stats_ajv",
+      "value": {
+        "stars": 14866,
+        "openIssues": 395,
+        "forks": 1063,
+        "watchers": 109
+      },
+      "source": "github",
+      "category": "community_health",
+      "description": "GitHub stats for ajv"
+    },
+    {
+      "name": "github_topic_json_schema",
+      "value": 4906,
+      "source": "github",
+      "category": "community_health",
+      "description": "GitHub repos tagged with topic \"json-schema\""
+    },
+    {
+      "name": "github_topic_jsonschema",
+      "value": 463,
+      "source": "github",
+      "category": "community_health",
+      "description": "GitHub repos tagged with topic \"jsonschema\""
+    },
+    {
+      "name": "stackoverflow_json_schema",
+      "value": 0,
+      "source": "stackoverflow",
+      "category": "community_support",
+      "description": "Stack Overflow question count for tag \"json-schema\""
+    },
+    {
+      "name": "stackoverflow_jsonschema",
+      "value": 3561,
+      "source": "stackoverflow",
+      "category": "community_support",
+      "description": "Stack Overflow question count for tag \"jsonschema\""
+    },
+    {
+      "name": "stackoverflow_ajv",
+      "value": 393,
+      "source": "stackoverflow",
+      "category": "community_support",
+      "description": "Stack Overflow question count for tag \"ajv\""
+    },
+    {
+      "name": "ajv_30day_trend",
+      "value": [
+        {
+          "downloads": 81053690,
+          "day": "2026-09-30"
+        },
+        {
+          "downloads": 82528818,
+          "day": "2026-10-01"
+        },
+        {
+          "downloads": 71299279,
+          "day": "2026-10-02"
+        },
+        {
+          "downloads": 40585946,
+          "day": "2026-10-03"
+        },
+        {
+          "downloads": 40131112,
+          "day": "2026-10-04"
+        },
+        {
+          "downloads": 76485436,
+          "day": "2026-10-05"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-06"
+        },
+        {
+          "downloads": 80076800,
+          "day": "2026-10-07"
+        },
+        {
+          "downloads": 81948444,
+          "day": "2026-10-08"
+        },
+        {
+          "downloads": 74040072,
+          "day": "2026-10-09"
+        },
+        {
+          "downloads": 40802642,
+          "day": "2026-10-10"
+        },
+        {
+          "downloads": 40931633,
+          "day": "2026-10-11"
+        },
+        {
+          "downloads": 73750094,
+          "day": "2026-10-12"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-13"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-14"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-15"
+        },
+        {
+          "downloads": 76481903,
+          "day": "2026-10-16"
+        },
+        {
+          "downloads": 40850050,
+          "day": "2026-10-17"
+        },
+        {
+          "downloads": 42041739,
+          "day": "2026-10-18"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-19"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-20"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-21"
+        },
+        {
+          "downloads": 89934793,
+          "day": "2026-10-22"
+        },
+        {
+          "downloads": 81146155,
+          "day": "2026-10-23"
+        },
+        {
+          "downloads": 42252441,
+          "day": "2026-10-24"
+        },
+        {
+          "downloads": 42069950,
+          "day": "2026-10-25"
+        },
+        {
+          "downloads": 85329162,
+          "day": "2026-10-26"
+        },
+        {
+          "downloads": 86509822,
+          "day": "2026-10-27"
+        },
+        {
+          "downloads": 89326340,
+          "day": "2026-10-28"
+        },
+        {
+          "downloads": 88458809,
+          "day": "2026-10-29"
+        }
+      ],
+      "source": "npm",
+      "category": "historical_trend",
+      "description": "AJV daily download counts for last 30 days"
+    },
+    {
+      "name": "zod_30day_trend",
+      "value": [
+        {
+          "downloads": 62805588,
+          "day": "2026-09-30"
+        },
+        {
+          "downloads": 66157945,
+          "day": "2026-10-01"
+        },
+        {
+          "downloads": 58710992,
+          "day": "2026-10-02"
+        },
+        {
+          "downloads": 37713631,
+          "day": "2026-10-03"
+        },
+        {
+          "downloads": 37125055,
+          "day": "2026-10-04"
+        },
+        {
+          "downloads": 61574782,
+          "day": "2026-10-05"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-06"
+        },
+        {
+          "downloads": 63045004,
+          "day": "2026-10-07"
+        },
+        {
+          "downloads": 67807579,
+          "day": "2026-10-08"
+        },
+        {
+          "downloads": 67166352,
+          "day": "2026-10-09"
+        },
+        {
+          "downloads": 44978946,
+          "day": "2026-10-10"
+        },
+        {
+          "downloads": 41522624,
+          "day": "2026-10-11"
+        },
+        {
+          "downloads": 62426874,
+          "day": "2026-10-12"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-13"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-14"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-15"
+        },
+        {
+          "downloads": 64571460,
+          "day": "2026-10-16"
+        },
+        {
+          "downloads": 40182897,
+          "day": "2026-10-17"
+        },
+        {
+          "downloads": 39866982,
+          "day": "2026-10-18"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-19"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-20"
+        },
+        {
+          "downloads": 0,
+          "day": "2026-10-21"
+        },
+        {
+          "downloads": 77021918,
+          "day": "2026-10-22"
+        },
+        {
+          "downloads": 68911022,
+          "day": "2026-10-23"
+        },
+        {
+          "downloads": 41727195,
+          "day": "2026-10-24"
+        },
+        {
+          "downloads": 40328168,
+          "day": "2026-10-25"
+        },
+        {
+          "downloads": 70533451,
+          "day": "2026-10-26"
+        },
+        {
+          "downloads": 72508905,
+          "day": "2026-10-27"
+        },
+        {
+          "downloads": 74695959,
+          "day": "2026-10-28"
+        },
+        {
+          "downloads": 74264507,
+          "day": "2026-10-29"
+        }
+      ],
+      "source": "npm",
+      "category": "historical_trend",
+      "description": "Zod daily download counts for last 30 days"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-10-31T11:24:44.680Z",
+  "timestamp": "2026-11-01T12:17:58.810Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
@@ -46,21 +46,21 @@
     },
     {
       "name": "pypi_weekly_jsonschema",
-      "value": 144320170,
+      "value": 145037376,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — jsonschema (PyPI)"
     },
     {
       "name": "pypi_weekly_pydantic",
-      "value": 258640581,
+      "value": 260521987,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — Pydantic"
     },
     {
       "name": "pypi_weekly_fastjsonschema",
-      "value": 29434819,
+      "value": 29480380,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — fastjsonschema (PyPI)"
@@ -69,8 +69,8 @@
       "name": "github_stats_json_schema_spec",
       "value": {
         "stars": 5203,
-        "openIssues": 69,
-        "forks": 472,
+        "openIssues": 68,
+        "forks": 473,
         "watchers": 105
       },
       "source": "github",
@@ -80,8 +80,8 @@
     {
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
-        "stars": 754,
-        "openIssues": 72,
+        "stars": 755,
+        "openIssues": 65,
         "forks": 326,
         "watchers": 40
       },
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4906,
+      "value": 4920,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""

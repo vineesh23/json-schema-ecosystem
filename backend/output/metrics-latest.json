@@ -1,45 +1,45 @@
 {
-  "timestamp": "2026-11-02T14:10:41.709Z",
+  "timestamp": "2026-11-03T13:14:20.441Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
       "name": "npm_weekly_ajv",
-      "value": 515092679,
+      "value": 513595298,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — AJV"
     },
     {
       "name": "npm_weekly_jsonschema",
-      "value": 8292916,
+      "value": 8116425,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — jsonschema (npm)"
     },
     {
       "name": "npm_weekly_zod",
-      "value": 442969207,
+      "value": 446662406,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Zod"
     },
     {
       "name": "npm_weekly_yup",
-      "value": 16578323,
+      "value": 16204821,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Yup"
     },
     {
       "name": "npm_weekly__cfworker_json-schema",
-      "value": 13986216,
+      "value": 14547211,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — @cfworker/json-schema"
     },
     {
       "name": "npm_weekly_joi",
-      "value": 34631226,
+      "value": 34336753,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Joi"
@@ -69,8 +69,8 @@
       "name": "github_stats_json_schema_spec",
       "value": {
         "stars": 5206,
-        "openIssues": 68,
-        "forks": 473,
+        "openIssues": 69,
+        "forks": 474,
         "watchers": 106
       },
       "source": "github",
@@ -80,8 +80,8 @@
     {
       "name": "github_stats_JSON_Schema_Test_Suite",
       "value": {
-        "stars": 755,
-        "openIssues": 50,
+        "stars": 754,
+        "openIssues": 49,
         "forks": 326,
         "watchers": 40
       },
@@ -93,8 +93,8 @@
       "name": "github_stats_ajv",
       "value": {
         "stars": 14868,
-        "openIssues": 398,
-        "forks": 1064,
+        "openIssues": 399,
+        "forks": 1066,
         "watchers": 109
       },
       "source": "github",
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 4943,
+      "value": 4954,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""
@@ -139,22 +139,6 @@
     {
       "name": "ajv_30day_trend",
       "value": [
-        {
-          "downloads": 81053690,
-          "day": "2026-09-30"
-        },
-        {
-          "downloads": 82528818,
-          "day": "2026-10-01"
-        },
-        {
-          "downloads": 71299279,
-          "day": "2026-10-02"
-        },
-        {
-          "downloads": 40585946,
-          "day": "2026-10-03"
-        },
         {
           "downloads": 40131112,
           "day": "2026-10-04"
@@ -258,6 +242,22 @@
         {
           "downloads": 88458809,
           "day": "2026-10-29"
+        },
+        {
+          "downloads": 77872737,
+          "day": "2026-10-30"
+        },
+        {
+          "downloads": 41403444,
+          "day": "2026-10-31"
+        },
+        {
+          "downloads": 44374374,
+          "day": "2026-11-01"
+        },
+        {
+          "downloads": 85649772,
+          "day": "2026-11-02"
         }
       ],
       "source": "npm",
@@ -267,22 +267,6 @@
     {
       "name": "zod_30day_trend",
       "value": [
-        {
-          "downloads": 62805588,
-          "day": "2026-09-30"
-        },
-        {
-          "downloads": 66157945,
-          "day": "2026-10-01"
-        },
-        {
-          "downloads": 58710992,
-          "day": "2026-10-02"
-        },
-        {
-          "downloads": 37713631,
-          "day": "2026-10-03"
-        },
         {
           "downloads": 37125055,
           "day": "2026-10-04"
@@ -386,6 +370,22 @@
         {
           "downloads": 74264507,
           "day": "2026-10-29"
+        },
+        {
+          "downloads": 67475760,
+          "day": "2026-10-30"
+        },
+        {
+          "downloads": 41052112,
+          "day": "2026-10-31"
+        },
+        {
+          "downloads": 44014725,
+          "day": "2026-11-01"
+        },
+        {
+          "downloads": 72650438,
+          "day": "2026-11-02"
         }
       ],
       "source": "npm",

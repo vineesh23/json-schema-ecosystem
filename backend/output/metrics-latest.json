@@ -1,66 +1,66 @@
 {
-  "timestamp": "2026-11-18T14:46:54.513Z",
+  "timestamp": "2026-11-19T14:53:54.440Z",
   "schemaVersion": "2.0.0",
   "metrics": [
     {
       "name": "npm_weekly_ajv",
-      "value": 539563588,
+      "value": 548918945,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — AJV"
     },
     {
       "name": "npm_weekly_jsonschema",
-      "value": 8421078,
+      "value": 8638403,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — jsonschema (npm)"
     },
     {
       "name": "npm_weekly_zod",
-      "value": 468944550,
+      "value": 475873286,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Zod"
     },
     {
       "name": "npm_weekly_yup",
-      "value": 15888347,
+      "value": 16392605,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Yup"
     },
     {
       "name": "npm_weekly__cfworker_json-schema",
-      "value": 16258389,
+      "value": 16562219,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — @cfworker/json-schema"
     },
     {
       "name": "npm_weekly_joi",
-      "value": 33123722,
+      "value": 34021508,
       "source": "npm",
       "category": "validator_market_share",
       "description": "Weekly npm downloads — Joi"
     },
     {
       "name": "pypi_weekly_jsonschema",
-      "value": 160156461,
+      "value": 160618199,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — jsonschema (PyPI)"
     },
     {
       "name": "pypi_weekly_pydantic",
-      "value": 281318633,
+      "value": 282417094,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — Pydantic"
     },
     {
       "name": "pypi_weekly_fastjsonschema",
-      "value": 28986505,
+      "value": 29420140,
       "source": "pypi",
       "category": "cross_language_adoption",
       "description": "Weekly PyPI downloads — fastjsonschema (PyPI)"
@@ -68,9 +68,9 @@
     {
       "name": "github_stats_json_schema_spec",
       "value": {
-        "stars": 5224,
+        "stars": 5225,
         "openIssues": 73,
-        "forks": 480,
+        "forks": 479,
         "watchers": 106
       },
       "source": "github",
@@ -82,7 +82,7 @@
       "value": {
         "stars": 757,
         "openIssues": 60,
-        "forks": 331,
+        "forks": 330,
         "watchers": 40
       },
       "source": "github",
@@ -92,7 +92,7 @@
     {
       "name": "github_stats_ajv",
       "value": {
-        "stars": 14881,
+        "stars": 14882,
         "openIssues": 411,
         "forks": 1070,
         "watchers": 109
@@ -103,7 +103,7 @@
     },
     {
       "name": "github_topic_json_schema",
-      "value": 5344,
+      "value": 5367,
       "source": "github",
       "category": "community_health",
       "description": "GitHub repos tagged with topic \"json-schema\""
@@ -139,10 +139,6 @@
     {
       "name": "ajv_30day_trend",
       "value": [
-        {
-          "downloads": 0,
-          "day": "2026-10-19"
-        },
         {
           "downloads": 0,
           "day": "2026-10-20"
@@ -258,6 +254,10 @@
         {
           "downloads": 95139565,
           "day": "2026-11-17"
+        },
+        {
+          "downloads": 94953925,
+          "day": "2026-11-18"
         }
       ],
       "source": "npm",
@@ -267,10 +267,6 @@
     {
       "name": "zod_30day_trend",
       "value": [
-        {
-          "downloads": 0,
-          "day": "2026-10-19"
-        },
         {
           "downloads": 0,
           "day": "2026-10-20"
@@ -386,6 +382,10 @@
         {
           "downloads": 79892153,
           "day": "2026-11-17"
+        },
+        {
+          "downloads": 79745652,
+          "day": "2026-11-18"
         }
       ],
       "source": "npm",
